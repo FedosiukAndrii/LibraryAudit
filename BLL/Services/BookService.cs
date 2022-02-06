@@ -2,6 +2,7 @@
 using BLL.Interfaces;
 using BLL.Mappers;
 using DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,14 +17,18 @@ namespace BLL.Services
             repositories = unit;
         }
 
-        public async Task CreateAsync(BookDTO bookDTO)
+        public async Task<bool> CreateAsync(BookDTO bookDTO)
         {
+            if (bookDTO is null)
+                throw new ArgumentNullException();
             var book = BookDtoToBookMapper.Map(bookDTO);
-            await repositories.Books.CreateAsync(book);
+            return await repositories.Books.CreateAsync(book);
         }
 
         public async Task DeleteAsync(int id)
         {
+            if (id < 0)
+                throw new ArgumentException();
             await repositories.Books.DeleteAsync(id);
         }
 
@@ -32,9 +37,20 @@ namespace BLL.Services
             return BookToBookDtoMapper.Map(await repositories.Books.GetAllAsync());
         }
 
-        public async Task<BookDTO> GetByIdAsync(int id)
+        public async Task<BookDTO> GetByIdAsync(int? id)
         {
-            return BookToBookDtoMapper.Map(await repositories.Books.GetByIdAsync(id));
+            ValidateId(id);
+            var book = await repositories.Books.GetByIdAsync((int)id);
+            if (book == null)
+                throw new NullReferenceException("Book is not found");
+            return BookToBookDtoMapper.Map(book);
+        }
+
+        private bool ValidateId(int? id)
+        {
+            if (id == null || id < 0)
+                throw new ArgumentException("Incorrect id");
+            return true;
         }
 
         public async Task UpdateAsync(BookDTO bookDTO)

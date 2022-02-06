@@ -2,6 +2,7 @@
 using BLL.Interfaces;
 using BLL.Services;
 using DAL;
+using LibraryAudit.PL.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -21,12 +22,13 @@ namespace PresentationLayer
         public IConfiguration Configuration { get; private set; }
 
         public void ConfigureServices(IServiceCollection services)
-        { 
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+        {
             services.AddDbContext<ApplicationContex>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddControllers();
+            services.AddControllers(optiotions => 
+            {
+                optiotions.Filters.Add(typeof(LastVisitTimeFilter));
+            });
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IBookService, BookService>();
             services.AddTransient<IArchiveService, ArchiveService>();

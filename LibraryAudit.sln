@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{AF0F8D11-A7D0-439D-891E-8F9B117AA1DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryAudit.DAL", "DAL\LibraryAudit.DAL.csproj", "{AF0F8D11-A7D0-439D-891E-8F9B117AA1DE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "BLL\BLL.csproj", "{29A4ACA8-BDC7-4AB8-BE54-DB8164D15091}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryAudit.BLL", "BLL\LibraryAudit.BLL.csproj", "{29A4ACA8-BDC7-4AB8-BE54-DB8164D15091}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentationLayer", "PresentationLayer\PresentationLayer.csproj", "{37FEDCE1-E79F-4F02-8CD6-1891C9DAB95A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryAudit.PL", "PresentationLayer\LibraryAudit.PL.csproj", "{37FEDCE1-E79F-4F02-8CD6-1891C9DAB95A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryAudit.Tests", "LibraryAudit.Tests\LibraryAudit.Tests.csproj", "{D862F093-554A-4D88-BAC6-58E2787D25D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{37FEDCE1-E79F-4F02-8CD6-1891C9DAB95A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37FEDCE1-E79F-4F02-8CD6-1891C9DAB95A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37FEDCE1-E79F-4F02-8CD6-1891C9DAB95A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D862F093-554A-4D88-BAC6-58E2787D25D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D862F093-554A-4D88-BAC6-58E2787D25D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D862F093-554A-4D88-BAC6-58E2787D25D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D862F093-554A-4D88-BAC6-58E2787D25D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

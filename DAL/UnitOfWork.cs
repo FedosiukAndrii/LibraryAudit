@@ -1,4 +1,5 @@
-﻿using DAL.Repositories;
+﻿using DAL.Entities;
+using DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -6,15 +7,15 @@ namespace DAL
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        private readonly ApplicationContex db; // = new ApplicationContex();
-        private BookRepository bookRepository;
-        private ClientRepository clientRepository;
+        private readonly ApplicationContex db; 
+        private IRepository<Book> bookRepository;
+        private IRepository<Client> clientRepository;
         public UnitOfWork(DbContextOptions options)
         {
             db = new ApplicationContex(options);
         }
 
-        public BookRepository Books
+        public IRepository<Book> Books
         {
             get
             {
@@ -24,7 +25,7 @@ namespace DAL
             }
         }
 
-        public ClientRepository Clients
+        public IRepository<Client> Clients
         {
             get
             {

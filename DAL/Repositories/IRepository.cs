@@ -8,7 +8,7 @@ namespace DAL.Repositories
     {
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> GetByIdAsync(int id);
-        Task CreateAsync(T item);
+        Task<bool> CreateAsync(T item);
         Task UpdateAsync(T item);
         Task DeleteAsync(int id);
     }

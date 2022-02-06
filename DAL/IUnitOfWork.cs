@@ -1,11 +1,12 @@
-﻿using DAL.Repositories;
+﻿using DAL.Entities;
+using DAL.Repositories;
 
 namespace DAL
 {
     public interface IUnitOfWork
     {
-        public BookRepository Books { get; }
+        public  IRepository<Book> Books { get; }
 
-        public ClientRepository Clients { get; }
+        public IRepository<Client> Clients { get; }
     }
 }

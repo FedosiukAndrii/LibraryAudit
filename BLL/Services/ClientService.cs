@@ -2,6 +2,7 @@
 using BLL.Interfaces;
 using BLL.Mappers;
 using DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,15 +22,20 @@ namespace BLL.Services
             return ClientToClientDtoMapper.Map(await repositories.Clients.GetAllAsync());
         }
 
-        public async Task<ClientDTO> GetByIdAsync(int id)
+        public async Task<ClientDTO> GetByIdAsync(int? id)
         {
-            return ClientToClientDtoMapper.Map(await repositories.Clients.GetByIdAsync(id));
+            if (id < 0 || id is null)
+                throw new ArgumentNullException("Incorrect Id");
+            var book = ClientToClientDtoMapper.Map(await repositories.Clients.GetByIdAsync((int)id));
+            if (book is null)
+                throw new Exception("Book is not found");
+            return book;
         }
 
-        public async Task CreateAsync(ClientDTO clientDTO)
+        public async Task<bool> CreateAsync(ClientDTO clientDTO)
         {
             var client = ClientDtoToClientMapper.Map(clientDTO);
-            await repositories.Clients.CreateAsync(client);
+            return await repositories.Clients.CreateAsync(client);
         }
 
         public async Task UpdateAsync(ClientDTO clientDTO)

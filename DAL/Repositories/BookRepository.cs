@@ -14,6 +14,7 @@ namespace DAL.Repositories
         {
             contex = applicationContex;
         }
+        public BookRepository() { }
         public async Task<IEnumerable<Book>> GetAllAsync()
         {
             return await contex.Books.ToListAsync();
@@ -23,10 +24,13 @@ namespace DAL.Repositories
             return await contex.Books.FindAsync(id);
         }
 
-        public async Task CreateAsync(Book book)
+        public async Task<bool> CreateAsync(Book book)
         {
             await contex.Books.AddAsync(book);
             await contex.SaveChangesAsync();
+            if (await contex.Books.ContainsAsync(book))
+                return true;
+            return false;
         }
         public async Task UpdateAsync(Book book)
         {

@@ -26,9 +26,9 @@ namespace PresentationLayer.Controllers
             List<BookDTO> books;
             if (sorted)
                 books = await _bookService.GetAvailableBooks();
-            else if(available)
+            else if (available)
                 books = await _bookService.GetAvailableBooks();
-            else if(reserved)
+            else if (reserved)
                 books = await _bookService.GetReservedBooks();
             else
                 books = (await _bookService.GetAllAsync()).ToList();
@@ -91,4 +91,5 @@ namespace PresentationLayer.Controllers
             return Ok();
         }
     }
+    
 }

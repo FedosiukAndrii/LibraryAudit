@@ -23,10 +23,13 @@ namespace DAL.Repositories
             return await contex.Clients.FindAsync(id);
         }
 
-        public async Task CreateAsync(Client client)
+        public async Task<bool> CreateAsync(Client client)
         {
             await contex.Clients.AddAsync(client);
             await contex.SaveChangesAsync();
+            if (await contex.Clients.ContainsAsync(client))
+                return true;
+            return false;
         }
 
         public async Task UpdateAsync(Client client)
